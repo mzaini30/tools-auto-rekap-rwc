@@ -65,7 +65,11 @@
                           'Nulis hari ke-'
                         ]}&entry.1709363990={item.timeline[i + 1 + iInduk * 7][
                           'Keterangan Tulisan'
-                        ]}"
+                        ]}&entry.291903281={item.timeline[i + 1 + iInduk * 7][
+                          'Keterangan Tulisan'
+                        ] == 'Utang'
+                          ? '1 hari'
+                          : 'tidak'}&entry.1941888307=tidak"
                       >
                         {#if item.timeline[i + 1 + iInduk * 7]["Keterangan Tulisan"] == "Hari Ini"}
                           <Badge color="green"
