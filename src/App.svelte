@@ -2,6 +2,7 @@
   import gosit from "gosit";
   import olahJson from "./function/olahJson";
   import Excel from "./icon/Excel.svelte";
+  import Refresh from "./icon/Refresh.svelte";
   import * as FileSaver from "file-saver";
   import * as XLSX from "xlsx";
   import {
@@ -134,6 +135,9 @@
 <div class="p-8">
   {#if data.length > 0}
     <div class="mb-2">
+      <Button on:click={() => run()} class="mr-1"
+        ><Refresh></Refresh> &nbsp; Refresh</Button
+      >
       <Button
         on:click={() =>
           exportToSpreadsheet(
