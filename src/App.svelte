@@ -57,6 +57,9 @@
   function cek(data) {
     console.log(JSON.stringify(data[0], null, 2));
   }
+  function cekLengkap(data) {
+    console.log(JSON.stringify(data, null, 2));
+  }
 
   async function run() {
     let result = await gosit(
@@ -68,9 +71,8 @@
       "1EZ8NBBUZ0QacUnqBYDVc8SfogLJLCQPMiS3aVKeg0Zg", // spreadsheet id
       "Form Responses 1" // sheet name
     );
-    cek(olahHasil(verifikator));
     data = olahJson(result, olahHasil(verifikator));
-    cek(data);
+    cekLengkap(data);
   }
   run();
 </script>
@@ -122,7 +124,7 @@
                           ? 'ya'
                           : 'bukan tantangan'}"
                       >
-                        {#if item.timeline[i + 1 + iInduk * 7]["nilai"] == null}
+                        {#if item.timeline[i + 1 + iInduk * 7]["nilai"] == 0}
                           <Badge color="yellow">belum diperiksa</Badge>
                         {:else}
                           <Badge color="green"

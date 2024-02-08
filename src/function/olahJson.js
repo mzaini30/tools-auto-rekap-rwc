@@ -14,7 +14,7 @@ export default function (data, dataVerifikator) {
         }
 
         transformedData[namaAkun]["timeline"][nulisHari] = entry;
-        transformedData[namaAkun]["timeline"][nulisHari]['nilai'] = null;
+        transformedData[namaAkun]["timeline"][nulisHari]['nilai'] = 0;
 
         for (let x of dataVerifikator) {
             if (x['nama (terisi otomatis)'] === namaAkun && x['hari ke (terisi otomatis)'] === nulisHari) {
