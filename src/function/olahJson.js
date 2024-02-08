@@ -1,4 +1,4 @@
-export default function (data) {
+export default function (data, dataVerifikator) {
     const transformedData = {};
 
 
@@ -14,6 +14,13 @@ export default function (data) {
         }
 
         transformedData[namaAkun]["timeline"][nulisHari] = entry;
+        transformedData[namaAkun]["timeline"][nulisHari]['nilai'] = null;
+
+        for (let x of dataVerifikator) {
+            if (x['nama (terisi otomatis)'] === namaAkun && x['hari ke (terisi otomatis)'] === nulisHari) {
+                transformedData[namaAkun]["timeline"][nulisHari]['nilai'] = x['nilai'];
+            }
+        }
     });
 
     const resultArray = Object.values(transformedData);

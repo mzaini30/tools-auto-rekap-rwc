@@ -1,0 +1,61 @@
+Skenario b: PUEBI dan jumlah kata dianggap kesalahan minor dibandig lainnya
+
+(i)Setor hari biasa
+
+Full: 
+
+Setor: 50 poin
+Sesuai tema: 30 poin
+Puebi: 10 poin 
+Jumlah kata sesuai: 10 poin
+
+Ketika tercentang semua, hasilnya 100 
+
+Bila tidak lengkap: 
+Setor, PUEBI dan jumlah kata sesuai, tapi tema tidak dimasukkan dalam = 70 
+
+Setor, tema dan jumlah kata masuk, PUEBI ga jelas = 90
+
+Setor, tema, PUEBI oke, kata kurang: 90
+
+ii. Hutang hari 1
+
+Setor lengkap semua = 95 
+Setor PUEBI kata oke, tema ga masuk: 65
+Setor tema kata oke, PUEBI ga masuk: 85
+Setor tema PUEBI oke,  kata kurang = 85
+
+Iii. Hutang hari ke 2
+
+Setor lengkap semua = 90
+Setor PUEBI kata oke, tema ga masuk: 60
+Setor tema kata oke, PUEBI ga masuk: 80
+Setor tema PUEBI oke,  kata kurang = 80
+
+4 kondisi diatas semuanya dikurangi 5 lagi 
+
+Notes: tidak diperkenankan numpuk hutang tulisan di hari ketiga > biar kitanya juga ga pusing rekap 
+
+iv. Tantangan 
+
+Saran: tantangan sebaiknya harus dikerjakan ontime tanpa hutang. Bila ada keperluan mendesak wajib izin pada PJ masing2 paling lambat h-1
+
+Poin tantangan: +50 
+Misal dalam tantangan tersebut ada 2 syarat, misalnya POV dan keyword, maka per syarat yang dipenuhi mendapat 25 poin. 
+
+Contoh: 
+Setor, puebi oke, jumlah kata sesuai, tema sesuai, syarat terpenuhi 1 = 50+30+10+10+25 = 125
+
+Semuanya terpenuhi = 150
+
+Semua terpenuhi tetapi telat 1 hari dengan izin = dikurangi poin sesuai klausul ii = 145
+
+Bikin tapi lupa nyetor: nilai tantangan-10, misal skor full, nilainya 150-10 =140
+
+Bikin telat dan tidak izin sebelumnya: nilai tantangan full-50= 100
+
+
+
+
+
+(Catatan: Awasi tanggal bikin peserta di IG, serta konfirmasi perizinannya)

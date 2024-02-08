@@ -16,16 +16,63 @@
     Modal,
     TableSearch,
   } from "flowbite-svelte";
+
   let data = [];
+
+  function olahHasil(data) {
+    let dataBaru = [];
+
+    for (let x of data) {
+      let nilai = 50;
+      if (x["sesuai tema"] == "ya") {
+        nilai += 30;
+      }
+      if (x["sesuai puebi"] == "ya") {
+        nilai += 10;
+      }
+      if (x["jumlah kata sesuai (300 kata)"] == "ya") {
+        nilai += 10;
+      }
+      if (x["terlambat"] == "1 hari") {
+        nilai -= 5;
+      } else if (x["terlambat"] == "2 hari") {
+        nilai -= 10;
+      }
+      if (x["sesuai tantangan"] == "ya") {
+        nilai += 50;
+      }
+      if (x["apakah tantangan telat dan tidak izin (default: tidak)"] == "ya") {
+        nilai -= 50;
+      }
+
+      dataBaru.push({
+        ...x,
+        nilai,
+      });
+    }
+
+    return dataBaru;
+  }
+
+  function cek(data) {
+    console.log(JSON.stringify(data[0], null, 2));
+  }
+
   async function run() {
     let result = await gosit(
       "1HRBdHrsnAUVWtord8V-Y7xHAiDEYRYZONVlLWT_io8I", // spreadsheet id
       "Form Responses 1" // sheet name
     );
-    data = olahJson(result);
+
+    let verifikator = await gosit(
+      "1EZ8NBBUZ0QacUnqBYDVc8SfogLJLCQPMiS3aVKeg0Zg", // spreadsheet id
+      "Form Responses 1" // sheet name
+    );
+    cek(olahHasil(verifikator));
+    data = olahJson(result, olahHasil(verifikator));
+    cek(data);
   }
   run();
-  let clickOutsideModal = false;
 </script>
 
 <svelte:head>
@@ -69,9 +116,20 @@
                           'Keterangan Tulisan'
                         ] == 'Utang'
                           ? '1 hari'
-                          : 'tidak'}&entry.1941888307=tidak"
+                          : 'tidak'}&entry.1941888307=tidak&entry.727814525={item
+                          .timeline[i + 1 + iInduk * 7]['Keterangan Tulisan'] ==
+                        'Tantangan'
+                          ? 'ya'
+                          : 'bukan tantangan'}"
                       >
-                        {#if item.timeline[i + 1 + iInduk * 7]["Keterangan Tulisan"] == "Hari Ini"}
+                        {#if item.timeline[i + 1 + iInduk * 7]["nilai"] == null}
+                          <Badge color="yellow">belum diperiksa</Badge>
+                        {:else}
+                          <Badge color="green"
+                            >{item.timeline[i + 1 + iInduk * 7]["nilai"]}</Badge
+                          >
+                        {/if}
+                        <!-- {#if item.timeline[i + 1 + iInduk * 7]["Keterangan Tulisan"] == "Hari Ini"}
                           <Badge color="green"
                             >{item.timeline[i + 1 + iInduk * 7][
                               "Keterangan Tulisan"
@@ -91,7 +149,7 @@
                               "Keterangan Tulisan"
                             ]}</Badge
                           >
-                        {/if}
+                        {/if} -->
                       </a>
                     </TableBodyCell>
                   {/if}
