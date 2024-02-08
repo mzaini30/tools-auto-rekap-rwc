@@ -1,6 +1,9 @@
 <script>
   import gosit from "gosit";
   import olahJson from "./function/olahJson";
+  import Excel from "./icon/Excel.svelte";
+  import * as FileSaver from "file-saver";
+  import * as XLSX from "xlsx";
   import {
     Table,
     Badge,
@@ -61,6 +64,22 @@
     console.log(JSON.stringify(data, null, 2));
   }
 
+  function dataSiapUntukExcel(data) {
+    let hasil = [["Nama"]];
+    for (let n in Array.from({ length: 28 }, (_, i) => i + 1)) {
+      hasil[0].push(+n + 1);
+    }
+    for (let x of data) {
+      // let nilaiTimeline = Object.values(x.timeline).map((item) => item.nilai);
+      let nilaiTimeline = Array.from({ length: 28 }, (_, i) => {
+        const timelineItem = x.timeline[i + 1];
+        return timelineItem ? timelineItem.nilai : 0;
+      });
+      hasil.push([x["Nama dan Akun Instagram"], ...nilaiTimeline]);
+    }
+    return hasil;
+  }
+
   async function run() {
     let result = await gosit(
       "1HRBdHrsnAUVWtord8V-Y7xHAiDEYRYZONVlLWT_io8I", // spreadsheet id
@@ -73,14 +92,58 @@
     );
     data = olahJson(result, olahHasil(verifikator));
     cekLengkap(data);
+    cekLengkap(dataSiapUntukExcel(data));
   }
   run();
+
+  const fileType =
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
+  // Desired file extesion
+  const fileExtension = ".xlsx";
+
+  const exportToSpreadsheet = (data, fileName) => {
+    //Create a new Work Sheet using the data stored in an Array of Arrays.
+    const workSheet = XLSX.utils.aoa_to_sheet(data);
+    // Generate a Work Book containing the above sheet.
+    const workBook = {
+      Sheets: { data: workSheet, cols: [] },
+      SheetNames: ["data"],
+    };
+    // Exporting the file with the desired name and extension.
+    const excelBuffer = XLSX.write(workBook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+    const fileData = new Blob([excelBuffer], { type: fileType });
+    FileSaver.saveAs(fileData, fileName + fileExtension);
+  };
+
+  function getFormattedDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0"); // Tambahkan 1 karena Januari dimulai dari indeks 0
+    const day = String(today.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  }
 </script>
 
 <svelte:head>
   <title>Auto Rekap RWC</title>
 </svelte:head>
 <div class="p-8">
+  {#if data.length > 0}
+    <div class="mb-2">
+      <Button
+        on:click={() =>
+          exportToSpreadsheet(
+            dataSiapUntukExcel(data),
+            `rekap-rwc_${getFormattedDate()}`
+          )}
+        color="green"><Excel></Excel> &nbsp; Export</Button
+      >
+    </div>
+  {/if}
   <Tabs style="underline" class="sticky top-0 left-0 bg-white z-[10]">
     {#each Array(4) as _, iInduk}
       <TabItem open={iInduk == 0} title="Pekan {iInduk + 1}">
