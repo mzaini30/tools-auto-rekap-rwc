@@ -54,14 +54,19 @@
                     <TableBodyCell>
                       <a
                         target="_blank"
-                        href={item.timeline[i + 1 + iInduk * 7][
-                          "Tautan Tulisan"
-                        ]}
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSeKlpzzTdm6nu73ICnuMC6I-ieqtLh-tm6rX9TB4HjHeLAHqg/viewform?usp=pp_url&entry.1929578686={item
+                          .timeline[i + 1 + iInduk * 7][
+                          'Nama dan Akun Instagram'
+                        ]}&entry.592515413={item.timeline[i + 1 + iInduk * 7][
+                          'Tema'
+                        ]}&entry.661204927={item.timeline[i + 1 + iInduk * 7][
+                          'Tautan Tulisan'
+                        ]}&entry.1206939061={item.timeline[i + 1 + iInduk * 7][
+                          'Nulis hari ke-'
+                        ]}&entry.1709363990={item.timeline[i + 1 + iInduk * 7][
+                          'Keterangan Tulisan'
+                        ]}"
                       >
-                        <!-- keterangan tulisan:
-                    Hari Ini
-    Utang
-    Tantangan -->
                         {#if item.timeline[i + 1 + iInduk * 7]["Keterangan Tulisan"] == "Hari Ini"}
                           <Badge color="green"
                             >{item.timeline[i + 1 + iInduk * 7][
